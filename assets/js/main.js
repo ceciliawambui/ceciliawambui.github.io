@@ -1,9 +1,4 @@
-/**
-* Template Name: Personal - v2.1.0
-* Template URL: https://bootstrapmade.com/personal-free-resume-bootstrap-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
+
 !(function($) {
   "use strict";
 
@@ -22,9 +17,11 @@
 
         if (hash == '#header') {
           $('#header').removeClass('header-top');
+          $('.header-extra').show();
           $("section").removeClass('section-show');
           return;
         }
+        $('.header-extra').hide(); 
 
         if (!$('#header').hasClass('header-top')) {
           $('#header').addClass('header-top');
@@ -149,3 +146,23 @@
   });
 
 })(jQuery);
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    document.querySelector(this.getAttribute('href')).scrollIntoView({
+      behavior: 'smooth'
+    });
+  });
+});
+const viewBtn = document.querySelector('.btn-outline[href="#portfolio"]');
+
+  viewBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    // Hide all sections
+    document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+    // Activate portfolio section
+    document.querySelector('#portfolio').classList.add('active');
+    // Smooth scroll
+    document.querySelector('#portfolio').scrollIntoView({ behavior: 'smooth' });
+  });
